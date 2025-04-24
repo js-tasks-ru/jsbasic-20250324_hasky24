@@ -39,11 +39,7 @@ export default class Modal {
       }
     });
 
-    document.addEventListener('keydown', (event) => {
-      if (event.code === 'Escape') {
-        this.close();
-      }
-    });
+    document.addEventListener('keydown', this.closeHandler);
   }
 
   setTitle(modalTitle) {
@@ -60,9 +56,15 @@ export default class Modal {
     document.body.classList.add('is-modal-open');
   }
 
+  closeHandler = (event) => {
+    if (event.code === 'Escape') {
+      this.close();
+    }
+  }
+
   close() {
     this.elem.remove();
     document.body.classList.remove('is-modal-open');
-    document.removeEventListener('keydown', this.close);
+    document.removeEventListener('keydown', this.closeHandler);
   }
 }
