@@ -66,12 +66,12 @@ export default class StepSlider {
   }
 
   #pointerDown = () => {
-    this.elem.classList.add('slider_dragging');
     document.addEventListener('pointermove', this.#pointerMove);
     document.addEventListener('pointerup', this.#pointerUp, { once: true });
   }
 
   #pointerMove = (event) => {
+    this.elem.classList.add('slider_dragging');
     let segments = this.steps - 1;
     let left = event.clientX - this.elem.getBoundingClientRect().left;
     let leftRelative = left / this.elem.offsetWidth;
