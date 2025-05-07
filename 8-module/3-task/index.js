@@ -21,6 +21,8 @@ export default class Cart {
       obj.count = 1;
       this.cartItems.push(obj);
     }
+
+    this.onProductUpdate(this.cartItems);
   }
 
   updateProductCount(productId, amount) {
@@ -37,7 +39,7 @@ export default class Cart {
       this.cartItems.splice(searchResult, 1);
     }
 
-    this.onProductUpdate(this.cartItem);
+    this.onProductUpdate(this.cartItems);
   }
 
   isEmpty() {
