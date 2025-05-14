@@ -9,7 +9,7 @@ export default class ProductGrid {
     this.products = products;
     this.filters = {};
     this.#render();
-    this.#createProductCard();
+    this.#createProductCard(this.products);
 
   }
 
@@ -22,7 +22,7 @@ export default class ProductGrid {
     `;
   }
 
-  #createProductCard(products = this.products) {
+  #createProductCard(products) {
     for (let product of products) {
       let newProduct = new ProductCard(product);
       this.elem.querySelector('.products-grid__inner').append(newProduct.elem);
@@ -73,7 +73,7 @@ export default class ProductGrid {
       filterArr = filterArr.filter(item => item.vegeterian);
     }
 
-    if (filt.maxSpiciness) {
+    if (typeof filt.maxSpiciness === 'number') {
       filterArr = filterArr.filter(item => item.spiciness <= filt.maxSpiciness);
     }
 

@@ -110,8 +110,10 @@ export default class StepSlider {
     this.thumb = this.elem.querySelector('.slider__thumb');
     this.progress = this.elem.querySelector('.slider__progress');
 
-    this.elem.querySelector('.slider__steps').firstElementChild.classList.add('slider__step-active');
-    this.elem.querySelector('.slider__progress').style.width = '0%';
+    this.elem.querySelector('.slider__steps').children[this.value].classList.add('slider__step-active');
+    this.elem.querySelector('.slider__progress').style.width = `${this.value / (this.steps - 1) * 100}%`;
+    this.thumb.style.left = `${this.value / (this.steps - 1) * 100}%`;
+    this.elem.querySelector('.slider__value').textContent = this.value;
 
     this.elem.addEventListener('click', (event) => {
       this.#changingSlider(event);

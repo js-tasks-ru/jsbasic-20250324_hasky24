@@ -39,6 +39,10 @@ export default class ProductCard {
   #render() {
     this.elem = createElement(this.#createTemplate());
 
-    this.elem.addEventListener('click', this.#addProduct);
+    this.elem.addEventListener('click', (event) => {
+      if (event.target.closest('.card__button')) {
+        this.#addProduct();
+      }
+    });
   }
 }

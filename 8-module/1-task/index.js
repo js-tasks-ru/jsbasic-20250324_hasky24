@@ -2,6 +2,7 @@ import createElement from '../../assets/lib/create-element.js';
 
 export default class CartIcon {
   topCard = null;
+  elem = null;
 
   constructor() {
     this.render();
@@ -23,9 +24,8 @@ export default class CartIcon {
           <span class="cart-icon__price">€${cart.getTotalPrice().toFixed(2)}</span>
         </div>`;
 
-      this.topCard = this.elem.getBoundingClientRect().top + window.pageYOffset;
-
       this.updatePosition();
+      this.topCard = this.elem.getBoundingClientRect().top;
 
       this.elem.classList.add('shake');
       this.elem.addEventListener('transitionend', () => {

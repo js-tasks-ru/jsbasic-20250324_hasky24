@@ -35,7 +35,7 @@ export default class Cart {
 
   updateProductCount(productId, amount) {
 
-    let searchResult = this.cartItems.findIndex(item => item.product.id == productId);
+    let searchResult = this.cartItems.findIndex(item => item.product.id === productId);
 
     if (searchResult === -1) {
       return;
@@ -44,6 +44,7 @@ export default class Cart {
     this.cartItems[searchResult].count += amount;
 
     if (this.cartItems[searchResult].count === 0) {
+      document.body.querySelector(`[data-product-id="${this.cartItems[searchResult].product.id}"]`).remove();
       this.cartItems.splice(searchResult, 1);
     }
 
@@ -163,6 +164,7 @@ export default class Cart {
         let infoPrice = modalBody.querySelector(`.cart-buttons__info-price`);
 
         productCount.innerHTML = card.count;
+
         productPrice.innerHTML = `€${(card.product.price * card.count).toFixed(2)}`;
         infoPrice.innerHTML = `€${(this.getTotalPrice().toFixed(2))}`;
       }
